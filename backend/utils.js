@@ -14,7 +14,7 @@ import {GoogleGenerativeAI, HarmCategory, HarmBlockThreshold,
       temperature: 0.5,
       topK: 1,
       topP: 1,
-      maxOutputTokens: 2000,
+      maxOutputTokens: 1000,
     };
   
     const safetySettings = [

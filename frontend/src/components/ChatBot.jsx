@@ -23,7 +23,7 @@ const Chatbot = () => {
   const mutation = useMutation({
     mutationFn: sendMessageAPI,
     onSuccess: (data) => {
-      setIsAITyping(false); // Stop showing AI typing when response arrives
+      setIsAITyping(false); 
       if(data.message === ""){
         setConversation((prevConversation) => [
           ...prevConversation,
@@ -50,11 +50,11 @@ const Chatbot = () => {
       { role: "user", content: currentMessage },
     ]);
 
-    setIsAITyping(true); // Show AI is typing as soon as the message is sent
+    setIsAITyping(true); 
 
-    mutation.mutate(currentMessage); // Removed redundant onSuccess here
+    mutation.mutate(currentMessage); 
 
-    setMessage(""); // Clear the input after sending
+    setMessage("");
   };
 
   return (
