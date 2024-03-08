@@ -30,8 +30,10 @@ const Chatbot = () => {
           { role: "assistant", content: "sorry but I can't answer that" },
         ]);
       }else{
+        console.log(data.message)
       setConversation((prevConversation) => [
         ...prevConversation,
+        
         { role: "assistant", content: data.message },
       ]);
     }
@@ -44,7 +46,7 @@ const Chatbot = () => {
       alert("Please enter a message.");
       return;
     }
-
+    console.log(currentMessage)
     setConversation((prevConversation) => [
       ...prevConversation,
       { role: "user", content: currentMessage },
@@ -87,7 +89,7 @@ const Chatbot = () => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             className="input-message"
-            onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
+            onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
           />
           <button
             onClick={handleSendMessage}

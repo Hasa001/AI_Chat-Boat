@@ -11,12 +11,12 @@ import {GoogleGenerativeAI, HarmCategory, HarmBlockThreshold,
     const model = genAI.getGenerativeModel({ model: MODEL_NAME });
   
     const generationConfig = {
-      temperature: 0.5,
+      temperature: 0.4,
       topK: 1,
       topP: 1,
       maxOutputTokens: 1000,
     };
-  
+
     const safetySettings = [
       {
         category: HarmCategory.HARM_CATEGORY_HARASSMENT,

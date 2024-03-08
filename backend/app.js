@@ -10,12 +10,12 @@ const port = process.env.PORT || 5000;
 // const ApiKey = process.env.API_KEY;
 
 // CORS options 
-const corsOptions = {
-  origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
-  credentials: true, 
-};
+// const corsOptions = {
+//   origin: ["http://localhost:5173", "http://127.0.0.1:5173"],
+//   credentials: true, 
+// };
 
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json()); 
 
 // const genAI = new GoogleGenerativeAI(ApiKey)
@@ -33,12 +33,11 @@ app.post("/ask", async (req, res) => {
 
     const result = await chat.sendMessage(userMessage);
     const response =  result.response;
-    console.log(response.text());
-    const botResponse = response.text();
+    const cleanedText = response.text().replace(/\*\*/g, '').replace(/\*/g, '');
+    console.log(cleanedText);
+    conversationHistory.push({ role: "assistant", content: cleanedText });
 
-    conversationHistory.push({ role: "assistant", content: botResponse });
-
-    res.json({ message: botResponse });
+    res.json({ message: cleanedText });
   } catch (error) {
     console.error("Error calling OpenAI: ", error);
     res.status(500).send("Error generating response from OpenAI");
